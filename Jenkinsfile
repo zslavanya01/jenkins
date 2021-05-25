@@ -4,9 +4,6 @@ pipeline {
     environment {
         PROJECT_NAME = "ROBOSHOP"
     }
-    options{
-        disable concurrent builds()
-    }
     parameters{
         string(name: 'COMPONENT', defaultValue: '', description: 'which component?')
     }
