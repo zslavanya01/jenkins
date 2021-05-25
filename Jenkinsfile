@@ -4,7 +4,13 @@ pipeline {
     environment {
         PROJECT_NAME = "ROBOSHOP"
     }
-    
+    options{
+        disable concurrent builds()
+    }
+    parameters{
+        string(name: 'COMPONENT', defaultvalue: '', description: 'which component?')
+    }
+
     stages {
 
         stage('ONE') {
