@@ -8,7 +8,7 @@ pipeline {
         disable concurrent builds()
     }
     parameters{
-        string(name: 'COMPONENT', defaultvalue: '', description: 'which component?')
+        string(name: 'COMPONENT', defaultValue: '', description: 'which component?')
     }
 
     stages {
