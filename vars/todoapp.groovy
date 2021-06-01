@@ -1,7 +1,10 @@
-def call() {
+def call(String COMPONENT) {
   pipeline {
     agent {
         label "java"
+    }
+    environment {
+        COMPONENT = COMPONENT
     }
 
     stages {
@@ -16,7 +19,7 @@ def call() {
         stage ('prepare artifacts') {
             steps {
                 sh '''
-        
+                  echo ${COMPONENT}
                   zip -r ../frontend.zip *
                 '''
 
