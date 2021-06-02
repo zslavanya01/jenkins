@@ -31,10 +31,40 @@ def call(Map params = [:]) {
             }
         }
 
-         stage ('prepare artifacts - NODEJS') {
+        stage ('prepare artifacts - NODEJS') {
              when {
                 environment name: 'APP_TYPE', value: 'NODEJS'
             }
+            steps {
+                sh '''
+        
+                  zip -r ../${COMPONENT}.zip *
+                '''
+
+            }
+        }
+
+        stage ('prepare artifacts') {
+            steps {
+                sh '''
+        
+                  zip -r ../${COMPONENT}.zip *
+                '''
+
+            }
+        }
+
+        stage ('prepare artifacts') {
+            steps {
+                sh '''
+        
+                  zip -r ../${COMPONENT}.zip *
+                '''
+
+            }
+        }
+
+        stage ('prepare artifacts') {
             steps {
                 sh '''
         
