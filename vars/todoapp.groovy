@@ -19,7 +19,7 @@ def call(Map params = [:]) {
         
         stage ('prepare artifacts') {
             when {
-                environment name: 'COMPONENT', value: 'frontend'
+                environment name: 'APP_TYPE', value: 'NGINX'
             }
             steps {
                 sh '''
@@ -29,6 +29,20 @@ def call(Map params = [:]) {
 
             }
         }
+
+         stage ('prepare artifacts') {
+             when {
+                environment name: 'APP_TYPE', value: 'NGINX'
+            }
+            steps {
+                sh '''
+        
+                  zip -r ../users.zip *
+                '''
+
+            }
+        }
+
         stage ('upload artifacts') {
             steps {
                 script {
