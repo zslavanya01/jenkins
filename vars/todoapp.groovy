@@ -45,6 +45,9 @@ def call(Map params = [:]) {
         }
 
         stage ('prepare artifacts') {
+            when {
+                environment name: 'APP_TYPE', value: 'NGINX'
+            }
             steps {
                 sh '''
         
@@ -55,6 +58,9 @@ def call(Map params = [:]) {
         }
 
         stage ('prepare artifacts') {
+            when {
+                environment name: 'APP_TYPE', value: 'NGINX'
+            }
             steps {
                 sh '''
         
@@ -65,6 +71,9 @@ def call(Map params = [:]) {
         }
 
         stage ('prepare artifacts') {
+            when {
+                environment name: 'APP_TYPE', value: 'NGINX'
+            }
             steps {
                 sh '''
         
