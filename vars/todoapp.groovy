@@ -24,7 +24,7 @@ def call(Map params = [:]) {
             steps {
                 sh '''
                   echo ${COMPONENT}
-                  zip -r ../frontend.zip *
+                  zip -r ../${COMPONENT}.zip *
                 '''
 
             }
