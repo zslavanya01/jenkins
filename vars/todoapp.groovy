@@ -13,11 +13,12 @@ def call(Map params = [:]) {
         NEXUS_IP     = "${args.NEXUS_IP}"
         PROJECT_NAME = "${args.PROJECT_NAME}"
         SLAVE_LABEL  = "${args.SLAVE_LABEL}"
+        APP_TYPE     = "${args.APP_TYPE}"
     }
 
     stages {
         
-        stage ('prepare artifacts') {
+        stage ('prepare artifacts - NGINX') {
             when {
                 environment name: 'APP_TYPE', value: 'NGINX'
             }
@@ -30,7 +31,7 @@ def call(Map params = [:]) {
             }
         }
 
-         stage ('prepare artifacts') {
+         stage ('prepare artifacts - NODEJS') {
              when {
                 environment name: 'APP_TYPE', value: 'NODEJS'
             }
