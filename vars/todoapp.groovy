@@ -1,21 +1,19 @@
-def call(String COMPONENT) {
+def call(Map params = [:]) {
+  def args = [
+      NEXUS  :  'some',
+  ]
+  args << params
+
   pipeline {
     agent {
         label "java"
     }
     environment {
-        COMPONENT = COMPONENT
+        COMPONENT = "${args.COMPONENT}"
     }
 
     stages {
-        stage ('Download Dependencies') {
-            steps{
-                sh '''
-                  npm install
-                '''
-            }
-        }
-
+        
         stage ('prepare artifacts') {
             steps {
                 sh '''
