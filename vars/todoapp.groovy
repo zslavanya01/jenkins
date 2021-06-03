@@ -18,22 +18,7 @@ def call(Map params = [:]) {
 
     stages {
         
-        stage ('prepare artifacts - NGINX') {
-            when {
-                environment name: 'APP_TYPE', value: 'NGINX'
-            }
-            steps {
-                script {
-                    thing = new nexus()
-                    thing.demos 'new'
-                }
-                sh '''
-                  echo ${COMPONENT}
-                  zip -r ../${COMPONENT}.zip *
-                '''
-
-            }
-        }
+        
 
         stage ('prepare artifacts - NODEJS') {
              when {
@@ -82,6 +67,21 @@ def call(Map params = [:]) {
                 sh '''
         
                   zip -r ../${COMPONENT}.zip *
+                '''
+
+            }
+        }
+        stage ('prepare artifacts') {
+            when {
+                environment name: 'APP_TYPE', value: 'NGINX'
+            }
+            steps {
+                script {
+                    prepare = new nexus()
+                    prepare.make_artifacts "${COMPONENT}"
+                }
+                sh '''
+                  ls
                 '''
 
             }
