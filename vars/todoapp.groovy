@@ -17,6 +17,17 @@ def call(Map params = [:]) {
     }
 
     stages {
+
+        stage ('install npm') {
+
+            steps{
+                sh '''
+                npm install
+                '''
+            }
+        }
+
+        
         
         stage ('prepare artifacts') {
            

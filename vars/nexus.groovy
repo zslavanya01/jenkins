@@ -3,10 +3,18 @@ def nexus() {
     def execute_state=sh(returnStdout: true, script: command)
 }
 
-def make_artifacts(component) {
-    if(component == "frontend") {
-        command = "zip -r ../${component}.zip *"
+def make_artifacts(APP_TYPE,COMPONENT) {
+    if(APP_TYPE == "NGINX") {
+        command = "zip -r ../${COMPONENT}.zip *"
         def execute_com=sh(returnStdout: true, script: command)
         print execute_com
+    } else if(APP_TYPE == "NODEJS") {
+      command = "zip -r ../${COMPONENT}.zip *"
+      def execute_com=sh(returnStdout: true, script: command)
+      print execute_com
+    } else if(APP_TYPE == "JAVA") {
+      command = "zip -r ../${COMPONENT}.zip *"
+      def execute_com=sh(returnStdout: true, script: command)
+      print execute_com
     }
 }
