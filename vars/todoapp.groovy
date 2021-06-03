@@ -20,9 +20,11 @@ def call(Map params = [:]) {
 
         stage ('Build code & Install Dependencies') {
             steps{
-                sh '''
-                npm install
-                '''
+                script {
+                    build = new nexus()
+                    prepare.code_build ("${APP_TYPE}" ,"${COMPONENT}")
+                }
+                
             }
         }
 
