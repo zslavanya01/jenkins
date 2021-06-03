@@ -18,8 +18,7 @@ def call(Map params = [:]) {
 
     stages {
 
-        stage ('install npm') {
-
+        stage ('Build code & Install Dependencies') {
             steps{
                 sh '''
                 npm install
@@ -36,10 +35,7 @@ def call(Map params = [:]) {
                     prepare = new nexus()
                     prepare.make_artifacts ("${APP_TYPE}" ,"${COMPONENT}")
                 }
-                sh '''
-                  ls
-                '''
-
+                
             }
         }
 
