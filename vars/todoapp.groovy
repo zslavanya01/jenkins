@@ -18,59 +18,6 @@ def call(Map params = [:]) {
 
     stages {
         
-        
-
-        stage ('prepare artifacts - NODEJS') {
-             when {
-                environment name: 'APP_TYPE', value: 'NODEJS'
-            }
-            steps {
-                sh '''
-        
-                  zip -r ../${COMPONENT}.zip *
-                '''
-
-            }
-        }
-
-        stage ('prepare artifacts - NODEJS') {
-            when {
-                environment name: 'APP_TYPE', value: 'NGINX'
-            }
-            steps {
-                sh '''
-        
-                  zip -r ../${COMPONENT}.zip *
-                '''
-
-            }
-        }
-
-        stage ('prepare artifacts - NODEJS') {
-            when {
-                environment name: 'APP_TYPE', value: 'NGINX'
-            }
-            steps {
-                sh '''
-        
-                  zip -r ../${COMPONENT}.zip *
-                '''
-
-            }
-        }
-
-        stage ('prepare artifacts - JAVA') {
-            when {
-                environment name: 'APP_TYPE', value: 'NGINX'
-            }
-            steps {
-                sh '''
-        
-                  zip -r ../${COMPONENT}.zip *
-                '''
-
-            }
-        }
         stage ('prepare artifacts') {
            
             steps {
