@@ -26,24 +26,7 @@ pipelineJob('CI-Pipelines/frontend-ci') {
     }
 }
 
-pipelineJob("CI-Pipelines/frontend-ci") {
-	description()
-	keepDependencies(false)
-	definition {
-		cpsScm {
-			scm {
-				git {
-					remote {
-						github("zslavanya01/frontend", "https")
-					}
-                    branch("**/tags/**")
-				}
-			}
-			scriptPath("Jenkinsfile")
-		}
-	}
-	disabled(false)
-}
+
 
 
 pipelineJob('CI-Pipelines/login-ci') {
@@ -52,6 +35,7 @@ pipelineJob('CI-Pipelines/login-ci') {
           'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
               'userRemoteConfigs' {
                   'hudson.plugins.git.UserRemoteConfig' {
+                      'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
                       'url'('https://github.com/zslavanya01/login.git')
                   }
               }
