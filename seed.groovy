@@ -26,6 +26,27 @@ pipelineJob('CI-Pipelines/frontend-ci') {
     }
 }
 
+pipelineJob("CI-Pipelines/frontend-ci") {
+	description()
+	keepDependencies(false)
+	definition {
+		cpsScm {
+			scm {
+				git {
+					remote {
+						github("zslavanya01/frontend", "https")
+					}
+					branch("*/main")
+					branch("**/tags/**")
+				}
+			}
+			scriptPath("Jenkinsfile")
+		}
+	}
+	disabled(false)
+}
+
+
 pipelineJob('CI-Pipelines/login-ci') {
     configure { flowdefination ->
       flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
