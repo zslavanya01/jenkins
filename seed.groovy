@@ -36,8 +36,7 @@ pipelineJob("CI-Pipelines/frontend-ci") {
 					remote {
 						github("zslavanya01/frontend", "https")
 					}
-					branch("*/main")
-					branch("**/tags/**")
+                    branch("**/tags/**")
 				}
 			}
 			scriptPath("Jenkinsfile")
