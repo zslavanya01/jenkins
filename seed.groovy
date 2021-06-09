@@ -16,7 +16,7 @@ pipelineJob('CI-Pipelines/frontend-ci') {
               }
               'branches' {
                   'hudson.plugins.git.BranchSpec' {
-                      'name'('*/main')
+                      'name'('**/tags/**')
                   }
               }
           }
