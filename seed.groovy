@@ -6,7 +6,15 @@ folder('CI-Pipelines') {
 
 pipelineJob('CI-Pipelines/frontend-ci') {
     configure { flowdefination ->
-      flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
+      flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
+        'triggers' {
+           'hudson.triggers.SCMTrigger' {
+             'spec'('* * * * 1-5')
+             'ignorePostCommitHooks'(false)
+        }
+      }
+    }
+    flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
           'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
               'userRemoteConfigs' {
                   'hudson.plugins.git.UserRemoteConfig' {
@@ -31,7 +39,15 @@ pipelineJob('CI-Pipelines/frontend-ci') {
 
 pipelineJob('CI-Pipelines/login-ci') {
     configure { flowdefination ->
-      flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
+      flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
+        'triggers' {
+           'hudson.triggers.SCMTrigger' {
+             'spec'('* * * * 1-5')
+             'ignorePostCommitHooks'(false)
+        }
+      }
+    }
+    flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
           'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
               'userRemoteConfigs' {
                   'hudson.plugins.git.UserRemoteConfig' {
@@ -54,7 +70,15 @@ pipelineJob('CI-Pipelines/login-ci') {
 
 pipelineJob('CI-Pipelines/todo-ci') {
     configure { flowdefination ->
-      flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
+      flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
+        'triggers' {
+           'hudson.triggers.SCMTrigger' {
+             'spec'('* * * * 1-5')
+             'ignorePostCommitHooks'(false)
+        }
+      }
+    }
+    flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
           'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
               'userRemoteConfigs' {
                   'hudson.plugins.git.UserRemoteConfig' {
@@ -77,7 +101,15 @@ pipelineJob('CI-Pipelines/todo-ci') {
 
 pipelineJob('CI-Pipelines/users-ci') {
     configure { flowdefination ->
-      flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
+     flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
+        'triggers' {
+           'hudson.triggers.SCMTrigger' {
+             'spec'('* * * * 1-5')
+             'ignorePostCommitHooks'(false)
+        }
+      }
+    }
+    flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
           'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
               'userRemoteConfigs' {
                   'hudson.plugins.git.UserRemoteConfig' {
@@ -100,7 +132,15 @@ pipelineJob('CI-Pipelines/users-ci') {
 
 pipelineJob('CI-Pipelines/redis-ci') {
     configure { flowdefination ->
-      flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
+      flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
+        'triggers' {
+           'hudson.triggers.SCMTrigger' {
+             'spec'('* * * * 1-5')
+             'ignorePostCommitHooks'(false)
+        }
+      }
+    }
+    flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
           'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
               'userRemoteConfigs' {
                   'hudson.plugins.git.UserRemoteConfig' {
