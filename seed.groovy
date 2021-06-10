@@ -67,8 +67,8 @@ pipelineJob('CI-Pipelines/login-ci') {
         }
 
     }
+ }
 }
-
 pipelineJob('CI-Pipelines/todo-ci') {
     configure { flowdefination ->
       flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
@@ -98,6 +98,7 @@ pipelineJob('CI-Pipelines/todo-ci') {
         }
 
     }
+ }
 }
 
 pipelineJob('CI-Pipelines/users-ci') {
@@ -129,6 +130,7 @@ pipelineJob('CI-Pipelines/users-ci') {
         }
 
     }
+ }
 }
 
 pipelineJob('CI-Pipelines/redis-ci') {
@@ -160,4 +162,5 @@ pipelineJob('CI-Pipelines/redis-ci') {
         }
 
     }
+ }
 }
