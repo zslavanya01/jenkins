@@ -32,7 +32,7 @@ pipelineJob("CI-Pipelines/frontend-ci") {
         }
     }
 }   
-}
+
 
 // folder('CI-Pipelines') {
 //     displayName('CI Pipelines')
