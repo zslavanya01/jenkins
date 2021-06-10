@@ -162,5 +162,4 @@ pipelineJob('CI-Pipelines/redis-ci') {
         }
 
     }
- }
 }
