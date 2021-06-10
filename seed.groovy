@@ -34,8 +34,8 @@ pipelineJob('CI-Pipelines/frontend-ci') {
         }
 
     }
- }
 }
+
 
 
 pipelineJob('CI-Pipelines/login-ci') {
@@ -67,7 +67,7 @@ pipelineJob('CI-Pipelines/login-ci') {
         }
 
     }
- }
+ 
 }
 pipelineJob('CI-Pipelines/todo-ci') {
     configure { flowdefination ->
@@ -98,7 +98,7 @@ pipelineJob('CI-Pipelines/todo-ci') {
         }
 
     }
- }
+ 
 }
 
 pipelineJob('CI-Pipelines/users-ci') {
@@ -130,7 +130,7 @@ pipelineJob('CI-Pipelines/users-ci') {
         }
 
     }
- }
+ 
 }
 
 pipelineJob('CI-Pipelines/redis-ci') {
