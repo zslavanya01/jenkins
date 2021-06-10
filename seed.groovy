@@ -11,10 +11,11 @@ pipelineJob('CI-Pipelines/frontend-ci') {
            'hudson.triggers.SCMTrigger' {
              'spec'('* * * * 1-5')
              'ignorePostCommitHooks'(false)
+            }
         }
       }
-    }
-    flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
+
+      flowdefination << delegate. 'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps'){
           'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
               'userRemoteConfigs' {
                   'hudson.plugins.git.UserRemoteConfig' {
