@@ -34,8 +34,8 @@ pipelineJob('CI-Pipelines/frontend-ci') {
         }
 
     }
+ }
 }
-
 
 
 pipelineJob('CI-Pipelines/login-ci') {
@@ -133,7 +133,7 @@ pipelineJob('CI-Pipelines/users-ci') {
 
 pipelineJob('CI-Pipelines/redis-ci') {
     configure { flowdefination ->
-      flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
+       flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
         'triggers' {
            'hudson.triggers.SCMTrigger' {
              'spec'('* * * * 1-5')
