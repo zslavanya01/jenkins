@@ -49,7 +49,9 @@ def call(Map params = [:]) {
         stage ('upload artifacts') {
             steps {
                 script {
-                    nexus
+                    prepare = new nexus()
+                    prepare.nexus (COMPONENT)
+                    
                 }
             }
         }
