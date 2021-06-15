@@ -1,21 +1,27 @@
-def nexus() {
-    command = "curl -f -v -u admin:admin123 --upload-file /home/ubuntu/workspace/CI-Pipelines/frontend.zip http://${NEXUS_IP}:8081/repository/frontend/frontend1.zip"
+def nexus(COMPONENT) {
+    get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}'"
+    def get_branch_exec=sh(returnStdout: true, script: get_branch)
+    def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
+
+    command = "curl -f -v -u admin:admin123 --upload-file ${FILENAME} http://${NEXUS_IP}:8081/repository/${COMPONENT}/${FILENAME}"
     def execute_state=sh(returnStdout: true, script: command)
 }
 
 def make_artifacts(APP_TYPE,COMPONENT) {
-    get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}'"
+    get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
     def get_branch_exec=sh(returnStdout: true, script: get_branch)
+    println("abc${get_branch_exec}abc")
+    def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
     if(APP_TYPE == "NGINX") {
-        command = "zip -r ../${COMPONENT}.zip *"
+        command = "zip -r ${FILENAME} *"
         def execute_com=sh(returnStdout: true, script: command)
         print execute_com
     } else if(APP_TYPE == "NODEJS") {
-      command = "zip -r ../${COMPONENT}.zip *"
+      command = "zip -r ${FILENAME} *"
       def execute_com=sh(returnStdout: true, script: command)
       print execute_com
     } else if(APP_TYPE == "JAVA") {
-      command = "zip -r ../${COMPONENT}.zip *"
+      command = "zip -r ${FILENAME} *"
       def execute_com=sh(returnStdout: true, script: command)
       print execute_com
     }
@@ -24,7 +30,7 @@ def make_artifacts(APP_TYPE,COMPONENT) {
 
 def code_build(APP_TYPE,COMPONENT) {
     if(APP_TYPE == "NODEJS") {
-        //command = "npm install
+        command = "npm install"
         def execute_com=sh(returnStdout: true, script: command)
         print execute_com
     } else if(APP_TYPE == "JAVA") {
