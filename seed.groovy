@@ -39,7 +39,7 @@ for (i in 0..count) {
   }
 }
 
-pipelineJob("CI-Pipelines/${j}-ci") {
+pipelineJob("Deployment Pipeline") {
    configure { flowdefinition ->
      flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
       'triggers' {
@@ -53,7 +53,7 @@ pipelineJob("CI-Pipelines/${j}-ci") {
        'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
          'userRemoteConfigs' {
            'hudson.plugins.git.UserRemoteConfig' {
-             'url'('https://github.com/zslavanya01/'+j+'.git')
+            'url'('https://github.com/zslavanya01/jenkins.git')
             'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
           }
         }
@@ -63,7 +63,7 @@ pipelineJob("CI-Pipelines/${j}-ci") {
            }
          }
        }
-      'scriptPath'('Jenkinsfile')
+      'scriptPath'('Jenkinsfile-Deployment')
        'lightweight'(true)
     }
   }
