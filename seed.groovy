@@ -38,3 +38,33 @@ for (i in 0..count) {
     }
   }
 }
+
+pipelineJob("CI-Pipelines/${j}-ci") {
+   configure { flowdefinition ->
+     flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
+      'triggers' {
+        'hudson.triggers.SCMTrigger' {
+           'spec'('* * * * 1-5')
+           'ignorePostCommitHooks'(false)
+        }
+      }
+    }
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+       'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+         'userRemoteConfigs' {
+           'hudson.plugins.git.UserRemoteConfig' {
+             'url'('https://github.com/zslavanya01/'+j+'.git')
+            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
+          }
+        }
+         'branches' {
+          'hudson.plugins.git.BranchSpec' {
+             'name'('*/tags/*')
+           }
+         }
+       }
+      'scriptPath'('Jenkinsfile')
+       'lightweight'(true)
+    }
+  }
+}
