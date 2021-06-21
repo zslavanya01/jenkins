@@ -1,0 +1,9 @@
+pipeline {
+   agent {
+        label "${args.SLAVE_LABEL}"
+    }
+
+    stages {
+        stage('find the server')
+    } 
+}
