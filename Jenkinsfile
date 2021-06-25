@@ -63,6 +63,10 @@ pipeline {
         UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
     }
 
+    tools {
+        maven 'mvn-3.6.3'
+    }
+
     triggers { cron('H */4 * * 1-5') }
 
     parameters {
