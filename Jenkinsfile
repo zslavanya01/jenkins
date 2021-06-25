@@ -28,28 +28,56 @@
 
 // }
 
-pipeline {
+// pipeline {
 
-    agent {
-        node {
-            label 'agent1'
-        }
+//     agent {
+//         node {
+//             label 'agent1'
+//         }
+//     }
+
+//     stages {
+//         stage('Hello') {
+//             steps {
+//                 echo "Hello"
+//             }
+//         }
+//     }
+
+//     post {
+//         always {
+//             echo "Post Action"
+//         }
+//     }
+// }
+
+pipeline {
+    agent any
+
+    environment {
+        PROJECT_NAME = "TODOAPP"
     }
 
     stages {
-        stage('Hello') {
+        stage('One') {
             steps {
-                echo "Hello"
+                sh "echo ${PROJECT_NAME}"
             }
         }
-    }
 
-    post {
-        always {
-            echo "Post Action"
+        stage('Two') {
+            environment {
+                PROJECT_NAME = "TODO"
+            }
+
+            steps {
+                sh "echo ${PROJECT_NAME}"
+            }
+
         }
     }
 }
+
 
 
 
