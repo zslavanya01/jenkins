@@ -63,6 +63,8 @@ pipeline {
         UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
     }
 
+    triggers { cron('H */4 * * 1-5') }
+
     parameters {
         string(name: 'COMPONENT', defaultValue: '', description: 'Which Component?')
         text(name: 'COMMENT', defaultValue: '', description: 'Comment on why are you running it.')
