@@ -56,12 +56,14 @@ pipeline {
 
     environment {
         PROJECT_NAME = "TODOAPP"
+        UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
     }
 
     stages {
         stage('One') {
             steps {
                 sh "echo ${PROJECT_NAME}"
+                sh "env"
             }
         }
 
