@@ -67,7 +67,7 @@ pipeline {
         string(name: 'COMPONENT', defaultValue: '', description: 'Which Component?')
         text(name: 'COMMENT', defaultValue: '', description: 'Comment on why are you running it.')
         booleanParam(name: 'FORCE_DEPLOY', defaultValue: true, description: 'Check this for force deployment')
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+        choice(name: 'ENV', choices: ['dev', 'qa', 'prod'], description: 'Pick Environment')
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
 
