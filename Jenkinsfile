@@ -105,6 +105,7 @@ pipeline {
             }
 
             when {
+                beforeAgent true
                 branch 'production'
             }
 
