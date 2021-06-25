@@ -103,7 +103,11 @@ pipeline {
             agent {
                 label 'ANSIBLE'
             }
-            
+
+            when {
+                branch 'production'
+            }
+
             environment {
                 PROJECT_NAME = "TODO"
             }
