@@ -108,13 +108,13 @@ pipelineJob('CI-Pipelines/login-ci') {
   }
 }
 
-pipelineJob('CI-Pipelines/user-ci') {
+pipelineJob('CI-Pipelines/users-ci') {
    configure { flowdefinition ->
      flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
        'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
          'userRemoteConfigs' {
            'hudson.plugins.git.UserRemoteConfig' {
-            'url'('https://github.com/zslavanya01/user.git')
+            'url'('https://github.com/zslavanya01/users.git')
           }
         }
         'branches' {
