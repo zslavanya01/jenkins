@@ -58,3 +58,39 @@
 //     }
 //   }
 // }
+
+def call() {
+    pipeline {
+        agent {
+         label 'JAVA'
+        }
+
+        stages {
+
+            stage('Download dependecies') {
+                steps {
+                    sh '''
+                      npm install
+                    '''
+                }
+            }
+
+            stage('prepare artifacts') {
+                steps {
+                    sh '''
+                      zip -r ../frontend.zip *
+                    '''
+                }
+            }  
+
+            stage('Upload Artifacts') {
+                steps {
+                    script {
+                        nexus
+                    }
+                }
+            }
+        }
+    }
+
+}

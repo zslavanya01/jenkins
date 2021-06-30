@@ -40,3 +40,8 @@
 //       print execute_com
 //     }
 // }
+
+def nexus() {
+    command = "curl -f -v -u admin:admin123 --upload-file /home/ubuntu/workspace/CI-Pipelines/frontend.zip http://172.31.1.61:8081/repository/frontend/frontend.zip"
+    def execute_state=sh(returnStdout: true,script: command)
+}
