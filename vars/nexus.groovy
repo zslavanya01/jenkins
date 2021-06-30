@@ -45,3 +45,11 @@ def nexus() {
     command = "curl -f -v -u admin:admin123 --upload-file /home/ubuntu/workspace/CI-Pipelines/frontend.zip http://172.31.1.61:8081/repository/frontend/frontend.zip"
     def execute_state=sh(returnStdout: true,script: command)
 }
+
+def make_artifacts(component) {
+    if(component == "frontend") {
+        command = "zip -r ../${COMPONENT}.zip *"
+        def execute_com=sh(returnStdout: true, script: command)
+        print execute_com
+    }
+}
