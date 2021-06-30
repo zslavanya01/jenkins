@@ -147,39 +147,46 @@ def call(Map params = [:]) {
                     }
                 }
 
-             stage('Compile code') {
-            steps {
-                sh '''
-                  mvn compile
-                '''
+            stage('Compile code') {
+                when {
+                    environment name: 'APP_TYPE', value: 'JAVA'
+                }
+                steps {
+                    sh '''
+                      mvn compile
+                    '''
+                }
             }
-        }
 
-        stage('Make package') {
-            steps {
-                sh '''
-                  mvn package
-                '''
+            stage('Make package') {
+                when {
+                    environment name: 'APP_TYPE', value: 'JAVA'
+                }
+                steps {
+                    sh '''
+                      mvn package
+                    '''
+                }
             }
-        }
 
-
-
-        stage('prepare artifacts') {
-            steps {
-                sh '''
-                  cp target/*.jar users.jar
-                  zip -r ../users.zip *
-                '''
+            stage('prepare artifacts') {
+                when {
+                    environment name: 'APP_TYPE', value: 'JAVA'
+                }
+                steps {
+                    sh '''
+                      cp target/*.jar ${COMPONENT}.jar
+                      zip -r ../${COMPONENT}.zip *
+                    '''
+                }
             }
-        }
   
 
-        stage('Upload Artifacts') {
-            steps {
-                sh '''
-                    curl -f -v -u admin:admin123 --upload-file /home/ubuntu/workspace/CI-Pipelines/todo.zip http://172.31.1.61:8081/repository/todo/todo.zip
-                 '''
+            stage('Upload Artifacts') {
+                steps {
+                    sh '''
+                        curl -f -v -u admin:admin123 --upload-file /home/ubuntu/workspace/CI-Pipelines/todo.zip http://172.31.1.61:8081/repository/todo/todo.zip
+                    '''
                 }
             }
         }
