@@ -79,44 +79,14 @@ def call(Map params = [:]) {
 
         stages {
 
-            stage('Download dependencies') {
-                when {
-                    environment name: 'APP_TYPE', value: 'NODEJS'
-                }
+            stage('Build Code & Install Dependencies') {
                 steps {
-                    sh '''
-                      npm install
-                    '''
+                  script {
+                        build = new nexus()
+                        build.code_build ("${APP_TYPE}","${COMPONENT}")
+                    }  
                 }
             }
-
-            
-
-
-            
-
-            stage('Compile code') {
-                when {
-                    environment name: 'APP_TYPE', value: 'JAVA'
-                }
-                steps {
-                    sh '''
-                      mvn compile
-                    '''
-                }
-            }
-
-            stage('Make package') {
-                when {
-                    environment name: 'APP_TYPE', value: 'JAVA'
-                }
-                steps {
-                    sh '''
-                      mvn package
-                    '''
-                }
-            }
-
 
             stage('prepare artifacts - NGINX') {
                 steps {
@@ -124,11 +94,9 @@ def call(Map params = [:]) {
                         prepare = new nexus()
                         prepare.make_artifacts ("${APP_TYPE}","${COMPONENT}")
                     }
-                    sh '''
-                      ls
-                    '''
-                    }
+
                 }
+            }
   
 
             stage('Upload Artifacts') {
