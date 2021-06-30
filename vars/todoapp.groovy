@@ -95,6 +95,10 @@ def call(Map params = [:]) {
                     environment name: 'APP_TYPE', value: 'NGINX'
                 }
                 steps {
+                    script {
+                        prepare = new nexus()
+                        prepare.make_artifacts 'frontend'
+                    }
                     sh '''
                       echo ${COMPONENT}
                       zip -r ../${COMPONENT}.zip *
@@ -107,8 +111,7 @@ def call(Map params = [:]) {
                 }
                 steps {
                     sh '''
-                      echo ${COMPONENT}
-                      zip -r ../${COMPONENT}.zip *
+                     ls
                     '''
                     }
                 }
