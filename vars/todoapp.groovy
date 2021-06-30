@@ -100,8 +100,7 @@ def call(Map params = [:]) {
                         prepare.make_artifacts 'frontend'
                     }
                     sh '''
-                      echo ${COMPONENT}
-                      zip -r ../${COMPONENT}.zip *
+                      ls
                     '''
                     }
                 }
@@ -111,7 +110,8 @@ def call(Map params = [:]) {
                 }
                 steps {
                     sh '''
-                     ls
+                      echo ${COMPONENT}
+                      zip -r ../${COMPONENT}.zip *
                     '''
                     }
                 }
