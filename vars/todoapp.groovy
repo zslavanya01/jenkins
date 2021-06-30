@@ -90,20 +90,7 @@ def call(Map params = [:]) {
                 }
             }
 
-            stage('prepare artifacts - NGINX') {
-                when {
-                    environment name: 'APP_TYPE', value: 'NGINX'
-                }
-                steps {
-                    script {
-                        prepare = new nexus()
-                        prepare.make_artifacts 'frontend'
-                    }
-                    sh '''
-                      ls
-                    '''
-                    }
-                }
+            
             stage('prepare artifacts - NODEJS') {
                 when {
                     environment name: 'APP_TYPE', value: 'NGINX'
@@ -162,6 +149,21 @@ def call(Map params = [:]) {
                     '''
                 }
             }
+
+            stage('prepare artifacts - NGINX') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NGINX'
+                }
+                steps {
+                    script {
+                        prepare = new nexus()
+                        prepare.make_artifacts "${COMPONENT}"
+                    }
+                    sh '''
+                      ls
+                    '''
+                    }
+                }
   
 
             stage('Upload Artifacts') {
