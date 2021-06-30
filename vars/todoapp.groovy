@@ -74,11 +74,60 @@ def call(Map params = [:]) {
             NEXUS_IP     = "${args.NEXUS_IP}"
             PROJECT_NAME = "${args.PROJECT_NAME}"
             SLAVE_LABEL  = "${args.SLAVE_LABEL}"
+            APP_TYPE     = "${args.APP_TYPE}"
         }
 
         stages {
 
-            stage('Download dependecies') {
+            stage('Download dependencies') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NODEJS'
+                }
+                steps {
+                    sh '''
+                      npm install
+                    '''
+                }
+            }
+
+            stage('prepare artifacts - NGINX') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NGINX'
+                }
+                steps {
+                    sh '''
+                      echo ${COMPONENT}
+                      zip -r ../${COMPONENT}.zip *
+                    '''
+                    }
+                }
+            stage('prepare artifacts - ') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NGINX'
+                }
+                steps {
+                    sh '''
+                      echo ${COMPONENT}
+                      zip -r ../${COMPONENT}.zip *
+                    '''
+                    }
+                }
+            stage('prepare artifacts') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NODEJS'
+                }
+                steps {
+                    sh '''
+                      echo ${COMPONENT}
+                      zip -r ../${COMPONENT}.zip *
+                    '''
+                    }
+                }
+
+            stage('Download dependencies') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NODEJS'
+                }
                 steps {
                     sh '''
                       npm install
@@ -88,21 +137,49 @@ def call(Map params = [:]) {
 
             stage('prepare artifacts') {
                 when {
-                    environment name: 'COMPONENT', value: 'frontend'
+                    environment name: 'APP_TYPE', value: 'NGINX'
                 }
                 steps {
                     sh '''
                       echo ${COMPONENT}
                       zip -r ../${COMPONENT}.zip *
                     '''
+                    }
                 }
-            }  
 
-            stage('Upload Artifacts') {
+             stage('Compile code') {
             steps {
                 sh '''
-                  curl -f -v -u admin:admin123 --upload-file /home/ubuntu/workspace/CI-Pipelines/todo.zip http://172.31.1.61:8081/repository/todo/todo.zip
+                  mvn compile
                 '''
+            }
+        }
+
+        stage('Make package') {
+            steps {
+                sh '''
+                  mvn package
+                '''
+            }
+        }
+
+
+
+        stage('prepare artifacts') {
+            steps {
+                sh '''
+                  cp target/*.jar users.jar
+                  zip -r ../users.zip *
+                '''
+            }
+        }
+  
+
+        stage('Upload Artifacts') {
+            steps {
+                sh '''
+                    curl -f -v -u admin:admin123 --upload-file /home/ubuntu/workspace/CI-Pipelines/todo.zip http://172.31.1.61:8081/repository/todo/todo.zip
+                 '''
                 }
             }
         }
