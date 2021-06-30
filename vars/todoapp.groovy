@@ -87,6 +87,9 @@ def call(Map params = [:]) {
             }
 
             stage('prepare artifacts') {
+                when {
+                    environment name: 'COMPONENT', value: 'frontend'
+                }
                 steps {
                     sh '''
                       echo ${COMPONENT}
