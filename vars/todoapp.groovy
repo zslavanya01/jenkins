@@ -101,7 +101,7 @@ def call(Map params = [:]) {
                     '''
                     }
                 }
-            stage('prepare artifacts - ') {
+            stage('prepare artifacts - NODEJS') {
                 when {
                     environment name: 'APP_TYPE', value: 'NGINX'
                 }
@@ -112,7 +112,7 @@ def call(Map params = [:]) {
                     '''
                     }
                 }
-            stage('prepare artifacts') {
+            stage('prepare artifacts - JAVA') {
                 when {
                     environment name: 'APP_TYPE', value: 'NODEJS'
                 }
@@ -124,28 +124,7 @@ def call(Map params = [:]) {
                     }
                 }
 
-            stage('Download dependencies') {
-                when {
-                    environment name: 'APP_TYPE', value: 'NODEJS'
-                }
-                steps {
-                    sh '''
-                      npm install
-                    '''
-                }
-            }
-
-            stage('prepare artifacts') {
-                when {
-                    environment name: 'APP_TYPE', value: 'NGINX'
-                }
-                steps {
-                    sh '''
-                      echo ${COMPONENT}
-                      zip -r ../${COMPONENT}.zip *
-                    '''
-                    }
-                }
+            
 
             stage('Compile code') {
                 when {
