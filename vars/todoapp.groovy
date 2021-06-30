@@ -59,10 +59,18 @@
 //   }
 // }
 
-def call() {
+def call(Map params = [:]) {
+    def args = [
+        NEXUS    :  'some',
+    ]
+    args  <<  params
+
     pipeline {
         agent {
          label 'JAVA'
+        }
+        environment {
+            COMPONENT = "${args.COMPONENT}"
         }
 
         stages {
@@ -78,6 +86,7 @@ def call() {
             stage('prepare artifacts') {
                 steps {
                     sh '''
+                      echo ${COMPONENT}
                       zip -r ../frontend.zip *
                     '''
                 }
