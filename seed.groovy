@@ -117,12 +117,13 @@ pipelineJob('CI-Pipelines/users-ci') {
        'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
          'userRemoteConfigs' {
            'hudson.plugins.git.UserRemoteConfig' {
+            'refspec'('+refs/tags/*:refs/remotes/origin/tags/*')
             'url'('https://github.com/zslavanya01/users.git')
           }
         }
         'branches' {
          'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
@@ -138,12 +139,13 @@ pipelineJob('CI-Pipelines/todo-ci') {
        'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
          'userRemoteConfigs' {
            'hudson.plugins.git.UserRemoteConfig' {
+            'refspec'('+refs/tags/*:refs/remotes/origin/tags/*')
             'url'('https://github.com/zslavanya01/todo.git')
           }
         }
         'branches' {
          'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
@@ -159,12 +161,13 @@ pipelineJob('CI-Pipelines/redis-ci') {
        'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
          'userRemoteConfigs' {
            'hudson.plugins.git.UserRemoteConfig' {
+            'refspec'('+refs/tags/*:refs/remotes/origin/tags/*')
             'url'('https://github.com/zslavanya01/redis.git')
           }
         }
         'branches' {
          'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
