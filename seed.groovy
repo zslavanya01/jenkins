@@ -78,7 +78,7 @@ pipelineJob('CI-Pipelines/frontend-ci') {
         }
         'branches' {
          'hudson.plugins.git.BranchSpec' {
-            'name'('**/tags/**')
+            'name'('*/tags/*')
           }
         }
       }
@@ -101,7 +101,7 @@ pipelineJob('CI-Pipelines/login-ci') {
         }
         'branches' {
          'hudson.plugins.git.BranchSpec' {
-            'name'('**/tags/**')
+            'name'('*/tags/*')
           }
         }
       }
