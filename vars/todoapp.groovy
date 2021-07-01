@@ -71,9 +71,9 @@ def call(Map params = [:]) {
         }
 
         triggers {
-            pollSCM('*/2 * * * 1-5')
+            pollSCM('*/2 * * 1-5')
         }
-        
+
         environment {
             COMPONENT    = "${args.COMPONENT}"
             NEXUS_IP     = "${args.NEXUS_IP}"
