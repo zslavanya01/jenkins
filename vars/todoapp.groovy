@@ -86,7 +86,7 @@ def call(Map params = [:]) {
 
             stage('Build Code & Install Dependencies') {
                 steps {
-                script {
+                    script {
                         build = new nexus()
                         build.code_build ("${APP_TYPE}","${COMPONENT}")
                     }  
@@ -95,7 +95,7 @@ def call(Map params = [:]) {
 
             stage('prepare artifacts - NGINX') {
                 steps {
-                script {
+                    script {
                         prepare = new nexus()
                         prepare.make_artifacts ("${APP_TYPE}","${COMPONENT}")
                     }
