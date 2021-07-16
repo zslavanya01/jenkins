@@ -111,7 +111,7 @@ def call(Map params = [:]) {
                         prepare.nexus(COMPONENT)
                     }
                 }        
-           }
+            }
 
            stage('Deploy to Dev env') {
                steps {
