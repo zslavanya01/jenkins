@@ -88,7 +88,7 @@ def code_build(APP_TYPE, COMPONENT) {
         command = "go get github.com/dgrijalva/jwt-go && go get github.com/labstack/echo && go get github.com/labstack/echo/middleware && go get github.com/labstack/gommon/log && go get github.com/openzipkin/zipkin-go && go get github.com/openzipkin/zipkin-go/middleware/http && go get github.com/openzipkin/zipkin-go/reporter/http && go build"
         def execute_com=sh(returnStdout:true, script: command)
         print execute_com
-    } else if(APP_TYPE == "NGINX") {
+    } else if(APP_TYPE == "NGINX-1") {
         command = "npm install"
         def execute_com=sh(returnStdout:true, script: command)
         print execute_com
