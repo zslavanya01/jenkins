@@ -1,9 +1,36 @@
 pipeline {
-   agent {
+    agent {
         label "${args.SLAVE_LABEL}"
     }
 
+    parameters {
+        choice(name: 'ENV', choices: ['dev','prod'], description: 'Select Environment')
+    }
+
     stages {
-        stage('find the server')
+        stage('find the server') {
+            steps {
+                sh 'echo'
+            }
+            
+        }
+
+        stage('deploy to DEV Env') {
+            when {
+                environment name: 'ENV', value: 'dev'
+            }
+            steps {
+                sh 'echo ansible-playbook .....'
+            }
+        }
+
+        stage('deploy to PROD Env') {
+            when {
+                environment name: 'ENV', value: 'prod'
+            }
+            steps {
+                sh 'echo ansible-playbook .....'
+            }
+        }
     } 
 }
